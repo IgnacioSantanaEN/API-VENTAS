@@ -1,4 +1,4 @@
-package com.example.Ventas.Service;
+package com.ventas.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.Ventas.Model.Venta;
-import com.example.Ventas.Repository.VentaRepository;
+import com.ventas.Model.Venta;
+import com.ventas.Repository.VentaRepository;
 
 @Service
 public class VentaService {

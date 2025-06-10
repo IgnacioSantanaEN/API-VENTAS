@@ -1,9 +1,9 @@
-package com.example.Ventas.Controller;
+package com.ventas.Controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.Ventas.Model.Venta;
-import com.example.Ventas.Service.VentaService;
+import com.ventas.Model.Venta;
+import com.ventas.Service.VentaService;
 
 import java.util.List;
 

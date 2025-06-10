@@ -1,4 +1,4 @@
-package com.example.Ventas.Model;
+package com.ventas.Model;
 
 import java.time.LocalDate;
 
@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "ventas")
 public class Venta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
