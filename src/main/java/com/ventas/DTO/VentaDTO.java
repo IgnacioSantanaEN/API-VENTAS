@@ -1,8 +1,7 @@
-package com.ventas.Model;
+package com.ventas.DTO;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,19 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "ventas")
-public class Venta {
-    @Id
-    @Column(name = "id_venta")
+public class VentaDTO {
     private Integer idVenta;
-
-    @Column(name = "id_cliente")
     private Integer idCliente;
-
-    @Column(name = "id_vendedor")
     private Integer idVendedor;
-
-    @Column(name = "fecha_venta")
     private LocalDate fechaVenta;
 }

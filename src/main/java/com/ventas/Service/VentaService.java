@@ -26,11 +26,11 @@ public class VentaService {
         return ventaRepository.save(venta);
     }
 
-    public Venta updateVenta(Integer id, Venta ventaDetails) {
-        return ventaRepository.findById(id).map(venta -> {
-            venta.setIdCliente(ventaDetails.getIdCliente());
-            venta.setIdVendedor(ventaDetails.getIdVendedor());
-            venta.setFechaVenta(ventaDetails.getFechaVenta());
+    public Venta updateVenta(Integer id, Venta venta) {
+        return ventaRepository.findById(id).map(Venta -> {
+            venta.setIdCliente(venta.getIdCliente());
+            venta.setIdVendedor(venta.getIdVendedor());
+            venta.setFechaVenta(venta.getFechaVenta());
             return ventaRepository.save(venta);
         }).orElse(null);
     }
