@@ -28,7 +28,7 @@ public class VentaController {
     @Autowired
     private VentaService ventaService;
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<VentaDTO>> getAllVentas() {
         List<VentaDTO> ventas = ventaService.getAllVentas();
         return ResponseEntity.ok(ventas);
@@ -44,7 +44,7 @@ public class VentaController {
         return ResponseEntity.ok(venta);
     }
 
-    @PostMapping("/admin/")
+    @PostMapping("/admin")
     public ResponseEntity<?> createVenta(@RequestBody VentaDTO ventaDTO) {
         VentaDTO creada = ventaService.createVenta(ventaDTO);
         if (creada == null) {
@@ -54,7 +54,7 @@ public class VentaController {
         return ResponseEntity.ok(new Mensaje("Venta creada exitosamente: " + creada.getIdVenta()));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/admin/{id}")
     public ResponseEntity<?> updateVenta(@PathVariable Integer id, @RequestBody VentaDTO ventaDTO) {
         VentaDTO actualizada = ventaService.updateVenta(id, ventaDTO);
         if (actualizada == null) {
@@ -64,7 +64,7 @@ public class VentaController {
         return ResponseEntity.ok(actualizada);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/admin/{id}")
     public ResponseEntity<?> deleteVenta(@PathVariable Integer id) {
         boolean eliminado = ventaService.deleteVenta(id);
         if (!eliminado) {
