@@ -1,7 +1,5 @@
 package com.ventas.DTO;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class VentaDTO {
     private Integer idVenta;
-    private Integer idCliente;
-    private Integer idVendedor;
-    private LocalDate fechaVenta;
+    private String link;
 }

@@ -9,9 +9,7 @@ public static VentaDTO toDTO(Venta venta) {
 
         VentaDTO dto = new VentaDTO();
         dto.setIdVenta(venta.getIdVenta());
-        dto.setIdCliente(venta.getIdCliente());
-        dto.setIdVendedor(venta.getIdVendedor());
-        dto.setFechaVenta(venta.getFechaVenta());
+        dto.setLink("http://localhost:8084/api/ventas/" + venta.getIdVenta());
 
         return dto;
     }
@@ -21,9 +19,6 @@ public static VentaDTO toDTO(Venta venta) {
 
         Venta venta = new Venta();
         venta.setIdVenta(dto.getIdVenta());
-        venta.setIdCliente(dto.getIdCliente());
-        venta.setIdVendedor(dto.getIdVendedor());
-        venta.setFechaVenta(dto.getFechaVenta());
 
         return venta;
     }

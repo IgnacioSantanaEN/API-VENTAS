@@ -3,6 +3,7 @@ package com.ventas.Controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ventas.DTO.VentaDTO;
+import com.ventas.Model.Venta;
 import com.ventas.Service.VentaService;
 
 import lombok.AllArgsConstructor;
@@ -34,9 +35,9 @@ public class VentaController {
         return ResponseEntity.ok(ventas);
     }
 
-    @GetMapping("/admin/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getVentaById(@PathVariable Integer id) {
-        VentaDTO venta = ventaService.getVentaById(id);
+        Venta venta = ventaService.getVentaById(id);
         if (venta == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new Mensaje("El id: " + id + " no ha podido ser encontrado"));
@@ -44,9 +45,9 @@ public class VentaController {
         return ResponseEntity.ok(venta);
     }
 
-    @PostMapping("/admin")
-    public ResponseEntity<?> createVenta(@RequestBody VentaDTO ventaDTO) {
-        VentaDTO creada = ventaService.createVenta(ventaDTO);
+    @PostMapping("/")
+    public ResponseEntity<?> createVenta(@RequestBody Venta venta) {
+        Venta creada = ventaService.createVenta(venta);
         if (creada == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new Mensaje("La venta no ha podido ser creada"));
@@ -54,17 +55,17 @@ public class VentaController {
         return ResponseEntity.ok(new Mensaje("Venta creada exitosamente: " + creada.getIdVenta()));
     }
 
-    @PutMapping("/admin/{id}")
-    public ResponseEntity<?> updateVenta(@PathVariable Integer id, @RequestBody VentaDTO ventaDTO) {
-        VentaDTO actualizada = ventaService.updateVenta(id, ventaDTO);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> updateVenta(@PathVariable Integer id, @RequestBody Venta venta) {
+        Venta actualizada = ventaService.updateVenta(id, venta);
         if (actualizada == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                .body(new Mensaje("No ha podido ser encontrada la venta: "+ id));
+                .body(new Mensaje("No ha podido ser encontrada la venta: " + id));
         }
         return ResponseEntity.ok(actualizada);
     }
 
-    @DeleteMapping("/admin/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteVenta(@PathVariable Integer id) {
         boolean eliminado = ventaService.deleteVenta(id);
         if (!eliminado) {
