@@ -29,9 +29,15 @@ public class VentaController {
     @Autowired
     private VentaService ventaService;
 
-    @GetMapping("/")
-    public ResponseEntity<List<VentaDTO>> getAllVentas() {
+    @GetMapping
+    public ResponseEntity<?> getAllVentas() {
         List<VentaDTO> ventas = ventaService.getAllVentas();
+
+        if(ventas == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new Mensaje("La lista de ventas esta vacia"));
+        }
+
         return ResponseEntity.ok(ventas);
     }
 
@@ -45,7 +51,7 @@ public class VentaController {
         return ResponseEntity.ok(venta);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public ResponseEntity<?> createVenta(@RequestBody Venta venta) {
         Venta creada = ventaService.createVenta(venta);
         if (creada == null) {
@@ -72,7 +78,7 @@ public class VentaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new Mensaje("No ha podido ser encontrada la Venta: " + id));
         }
-        return ResponseEntity.ok(new Mensaje("Venta: "+id+" eliminada con exito!"));
+        return ResponseEntity.ok(new Mensaje("Venta: "+ id +" eliminada con exito!"));
     }
 
     @Data

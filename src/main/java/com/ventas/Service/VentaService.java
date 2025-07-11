@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ventas.DTO.VentaDTO;
-import com.ventas.Mapper.VentaMapper;
 import com.ventas.Model.Venta;
 import com.ventas.Repository.VentaRepository;
 
@@ -20,7 +19,7 @@ public class VentaService {
     public List<VentaDTO> getAllVentas() {
         List<Venta> ventas = ventaRepository.findAll();
         return ventas.stream()
-                .map(VentaMapper::toDTO)
+                .map(this::toDto)
                 .collect(Collectors.toList());
     }
 
@@ -46,5 +45,15 @@ public class VentaService {
             ventaRepository.delete(venta);
             return true;
         }).orElse(false);
+    }
+
+    public VentaDTO toDto(Venta venta){
+        if (venta == null) return null;
+
+        VentaDTO dto = new VentaDTO();
+        dto.setIdVenta(venta.getIdVenta());
+        dto.setLink("http://localhost:8084/api/ventas/" + venta.getIdVenta());
+
+        return dto;
     }
 }
